@@ -1,0 +1,497 @@
+/* ECV Experience — camada visual premium inspirada em interfaces editoriais contemporâneas. */
+
+@property --ecv-border-angle {
+  syntax: "<angle>";
+  inherits: false;
+  initial-value: 0deg;
+}
+
+:root {
+  --premium-shadow: 0 1.5rem 4rem rgba(11, 40, 33, 0.15);
+  --premium-shadow-strong: 0 2rem 5rem rgba(11, 40, 33, 0.24);
+  --premium-ease: cubic-bezier(.22, 1, .36, 1);
+}
+
+/* Vidro editorial no cabeçalho. */
+.site-header.is-scrolled {
+  background:
+    linear-gradient(110deg, rgba(251, 245, 233, 0.94), rgba(244, 229, 197, 0.84)),
+    rgba(251, 245, 233, 0.9);
+  box-shadow:
+    0 1px 0 rgba(17, 45, 39, 0.1),
+    0 0.75rem 2.5rem rgba(17, 45, 39, 0.08);
+  backdrop-filter: blur(18px) saturate(1.15);
+}
+
+/* Aurora orgânica: luzes da paleta circulam atrás do ônibus. */
+.hero::before {
+  position: absolute;
+  z-index: 0;
+  inset: -30% -12% 24% 12%;
+  content: "";
+  background:
+    radial-gradient(ellipse at 20% 44%, rgba(91, 198, 216, 0.36), transparent 34%),
+    radial-gradient(ellipse at 58% 28%, rgba(239, 184, 95, 0.5), transparent 32%),
+    radial-gradient(ellipse at 82% 62%, rgba(201, 107, 49, 0.24), transparent 28%);
+  filter: blur(2.8rem);
+  opacity: 0.82;
+  transform: translate3d(-3%, -2%, 0) scale(1.04);
+  animation: ecv-aurora 14s var(--premium-ease) infinite alternate;
+  pointer-events: none;
+}
+
+.hero__bus-stage {
+  isolation: isolate;
+}
+
+.hero__bus-stage::before {
+  position: absolute;
+  z-index: -1;
+  right: 7%;
+  bottom: 5%;
+  left: 7%;
+  height: 32%;
+  content: "";
+  border-radius: 50%;
+  background: rgba(239, 184, 95, 0.42);
+  filter: blur(2.2rem);
+  transform: scaleX(1.08);
+  opacity: 0.72;
+}
+
+.hero__bus-cutout,
+.hero__bee,
+.hero__bird {
+  translate: var(--premium-shift-x, 0) var(--premium-shift-y, 0);
+  transition: translate 800ms var(--premium-ease);
+  will-change: translate;
+}
+
+/* Títulos-acento com brilho quente, sem perder as cores da marca. */
+.hero__line--accent,
+.experience__heading h2 em,
+.how2eco__title h2 em,
+.impact h2 em,
+.innovation h2 em,
+.contact h2 em {
+  background-image: linear-gradient(105deg, var(--orange) 8%, var(--honey) 46%, var(--orange) 76%);
+  background-size: 220% 100%;
+  background-position: 0 50%;
+  background-clip: text;
+  color: transparent;
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  animation: ecv-title-light 8s ease-in-out infinite alternate;
+}
+
+.bees__copy h2 span {
+  text-shadow: 0 0 2.5rem rgba(239, 184, 95, 0.28);
+}
+
+/* Índices funcionam como pequenos pontos de rota. */
+.section-index {
+  display: flex;
+  width: max-content;
+  max-width: 100%;
+  align-items: center;
+  gap: 0.65rem;
+}
+
+.section-index::before {
+  width: 0.48rem;
+  height: 0.48rem;
+  flex: 0 0 0.48rem;
+  content: "";
+  border: 1px solid currentColor;
+  border-radius: 50%;
+  background: var(--honey);
+  box-shadow: 0 0 0 0 rgba(239, 184, 95, 0.45);
+  animation: ecv-route-pulse 3.8s ease-out infinite;
+}
+
+/* Linhas luminosas sobre a fotografia do manifesto. */
+.manifesto::before {
+  position: absolute;
+  z-index: 1;
+  inset: -18%;
+  content: "";
+  background:
+    repeating-linear-gradient(112deg, transparent 0 8rem, rgba(239, 184, 95, 0.13) 8.05rem 8.12rem, transparent 8.17rem 15rem),
+    radial-gradient(circle at 75% 18%, rgba(91, 198, 216, 0.16), transparent 28%);
+  mask-image: linear-gradient(90deg, transparent, #000 24%, #000 88%, transparent);
+  opacity: 0.58;
+  transform: translate3d(-4%, 0, 0);
+  animation: ecv-background-lines 20s linear infinite alternate;
+  pointer-events: none;
+}
+
+.manifesto__pillars span {
+  box-shadow: inset 0 0 0 0 rgba(239, 184, 95, 0.24);
+  transition:
+    transform 300ms var(--premium-ease),
+    border-color 300ms ease,
+    background 300ms ease,
+    box-shadow 300ms ease;
+}
+
+@media (hover: hover) {
+  .manifesto__pillars span:hover {
+    transform: translateY(-0.25rem);
+    border-color: rgba(239, 184, 95, 0.9);
+    background: rgba(239, 184, 95, 0.12);
+    box-shadow: inset 0 0 2rem rgba(239, 184, 95, 0.12);
+  }
+}
+
+/* Card Spotlight: luz localizada sem cobrir o conteúdo. */
+.premium-card {
+  position: relative;
+  isolation: isolate;
+  overflow: hidden;
+}
+
+.premium-card::before {
+  position: absolute;
+  z-index: 0;
+  inset: 0;
+  content: "";
+  background: radial-gradient(
+    28rem circle at var(--premium-glow-x, 50%) var(--premium-glow-y, 30%),
+    rgba(239, 184, 95, 0.28),
+    rgba(91, 198, 216, 0.08) 35%,
+    transparent 68%
+  );
+  opacity: 0.18;
+  transition: opacity 450ms ease;
+  pointer-events: none;
+}
+
+.answer-card > :not(.answer-card__doodle):not(.answer-card__bus),
+.method-list article > *,
+.audience__stages article > *,
+.impact__cards article > *,
+.future__grid li > * {
+  position: relative;
+  z-index: 1;
+}
+
+@media (hover: hover) and (pointer: fine) {
+  .premium-card:hover::before {
+    opacity: 0.92;
+  }
+
+  .method-list article,
+  .future__grid li {
+    transition:
+      padding 350ms var(--premium-ease),
+      background 350ms ease,
+      color 350ms ease;
+  }
+
+  .method-list article:hover,
+  .future__grid li:hover {
+    padding-inline: 1.15rem;
+  }
+
+  .method-list article:hover {
+    background: rgba(239, 184, 95, 0.09);
+  }
+
+  .future__grid li:hover {
+    background: rgba(244, 229, 197, 0.1);
+  }
+}
+
+/* Borda viva inspirada no Moving Border, refeita em CSS nativo. */
+@supports ((-webkit-mask-composite: xor) or (mask-composite: exclude)) {
+  .nav-cta,
+  .header-cta-mobile,
+  .round-link,
+  .contact-button,
+  .route-banner p {
+    position: relative;
+    isolation: isolate;
+  }
+
+  .nav-cta::before,
+  .header-cta-mobile::before,
+  .round-link::before,
+  .contact-button::before,
+  .route-banner p::before {
+    position: absolute;
+    z-index: 3;
+    inset: -1px;
+    padding: 1.5px;
+    content: "";
+    border-radius: inherit;
+    background: conic-gradient(
+      from var(--ecv-border-angle),
+      transparent 0 42%,
+      var(--honey) 48%,
+      var(--sky) 54%,
+      var(--orange) 60%,
+      transparent 68% 100%
+    );
+    -webkit-mask: linear-gradient(#000 0 0) content-box, linear-gradient(#000 0 0);
+    -webkit-mask-composite: xor;
+    mask: linear-gradient(#000 0 0) content-box, linear-gradient(#000 0 0);
+    mask-composite: exclude;
+    animation: ecv-moving-border 6s linear infinite;
+    pointer-events: none;
+  }
+}
+
+.round-link {
+  box-shadow: 0 0.75rem 2rem rgba(17, 45, 39, 0.08);
+}
+
+.round-link svg {
+  width: 1rem;
+  height: 1rem;
+  fill: none;
+  stroke: currentColor;
+  stroke-linecap: round;
+  stroke-linejoin: round;
+  stroke-width: 2;
+}
+
+.contact-button {
+  box-shadow: 0 1rem 2.5rem rgba(11, 40, 33, 0.12);
+}
+
+.contact-button__arrow {
+  display: grid;
+  width: 2.3rem;
+  height: 2.3rem;
+  place-items: center;
+  border-radius: 50%;
+  background: rgba(239, 184, 95, 0.14);
+  transition:
+    transform 350ms var(--premium-ease),
+    background 250ms ease;
+}
+
+.contact-button__arrow svg {
+  width: 1.15rem;
+  height: 1.15rem;
+  fill: none;
+  stroke: currentColor;
+  stroke-linecap: round;
+  stroke-linejoin: round;
+  stroke-width: 2;
+}
+
+@media (hover: hover) {
+  .contact-button:hover .contact-button__arrow {
+    transform: translate(0.15rem, -0.15rem) rotate(4deg);
+    background: rgba(17, 45, 39, 0.12);
+  }
+}
+
+/* Galerias ganham acabamento fotográfico e reflexo suave. */
+.mosaic-card,
+.case__photo {
+  isolation: isolate;
+  transition:
+    box-shadow 500ms var(--premium-ease),
+    filter 500ms ease;
+}
+
+.mosaic-card::after,
+.case__photo::after {
+  position: absolute;
+  z-index: 2;
+  inset: 0;
+  content: "";
+  border: 1px solid rgba(255, 250, 240, 0.32);
+  border-radius: inherit;
+  background: linear-gradient(115deg, transparent 25%, rgba(255, 250, 240, 0.2) 48%, transparent 68%);
+  background-position: 180% 0;
+  background-size: 260% 100%;
+  opacity: 0;
+  transition:
+    opacity 450ms ease,
+    background-position 900ms var(--premium-ease);
+  pointer-events: none;
+}
+
+@media (hover: hover) {
+  .mosaic-card:hover,
+  .case__photo:hover {
+    box-shadow: var(--premium-shadow-strong);
+    filter: saturate(1.06) contrast(1.02);
+  }
+
+  .mosaic-card:hover::after,
+  .case__photo:hover::after {
+    background-position: -80% 0;
+    opacity: 1;
+  }
+}
+
+.case__label::before {
+  position: absolute;
+  inset: -0.75rem;
+  content: "";
+  border: 1px dashed rgba(244, 229, 197, 0.72);
+  border-radius: 50%;
+  opacity: 0.72;
+  animation: ecv-seal-orbit 18s linear infinite;
+  pointer-events: none;
+}
+
+/* Profundidade nas listas editoriais e seções finais. */
+.place:hover {
+  background:
+    radial-gradient(circle at 88% 50%, rgba(91, 198, 216, 0.14), transparent 30%),
+    var(--forest);
+  box-shadow: 0 0.9rem 2.4rem rgba(17, 45, 39, 0.12);
+}
+
+.impact::after {
+  position: absolute;
+  z-index: 0;
+  inset: 0;
+  content: "";
+  background-image:
+    radial-gradient(circle, rgba(239, 184, 95, 0.22) 0 1px, transparent 1.5px),
+    radial-gradient(circle at 78% 22%, rgba(91, 198, 216, 0.18), transparent 28%);
+  background-position: 0 0, 0 0;
+  background-size: 2.5rem 2.5rem, auto;
+  mask-image: linear-gradient(110deg, transparent 6%, #000 46%, transparent 92%);
+  opacity: 0.34;
+  animation: ecv-dot-drift 24s linear infinite;
+  pointer-events: none;
+}
+
+.impact__cards {
+  box-shadow: 0 2rem 5rem rgba(0, 0, 0, 0.12);
+}
+
+.future::before {
+  position: absolute;
+  z-index: 0;
+  inset: -20%;
+  content: "";
+  background:
+    radial-gradient(circle at 15% 26%, rgba(91, 198, 216, 0.2), transparent 26%),
+    radial-gradient(circle at 76% 68%, rgba(239, 184, 95, 0.3), transparent 28%);
+  filter: blur(2.5rem);
+  opacity: 0.72;
+  animation: ecv-aurora 17s var(--premium-ease) infinite alternate-reverse;
+  pointer-events: none;
+}
+
+.contact::after {
+  position: absolute;
+  z-index: 0;
+  inset: 0;
+  content: "";
+  background-image: radial-gradient(circle, rgba(17, 45, 39, 0.11) 0 1px, transparent 1.4px);
+  background-size: 2.2rem 2.2rem;
+  mask-image: radial-gradient(circle at 70% 50%, #000, transparent 58%);
+  opacity: 0.55;
+  pointer-events: none;
+}
+
+.site-footer {
+  background:
+    radial-gradient(circle at 50% 0, rgba(91, 198, 216, 0.1), transparent 42%),
+    var(--forest-deep);
+}
+
+@keyframes ecv-aurora {
+  0% { transform: translate3d(-4%, -2%, 0) scale(1.02) rotate(-2deg); }
+  55% { transform: translate3d(3%, 2%, 0) scale(1.1) rotate(2deg); }
+  100% { transform: translate3d(7%, -1%, 0) scale(1.05) rotate(-1deg); }
+}
+
+@keyframes ecv-title-light {
+  to { background-position: 100% 50%; }
+}
+
+@keyframes ecv-route-pulse {
+  0%, 45% { box-shadow: 0 0 0 0 rgba(239, 184, 95, 0.42); }
+  75%, 100% { box-shadow: 0 0 0 0.65rem rgba(239, 184, 95, 0); }
+}
+
+@keyframes ecv-background-lines {
+  to { transform: translate3d(8%, -2%, 0); }
+}
+
+@keyframes ecv-moving-border {
+  to { --ecv-border-angle: 360deg; }
+}
+
+@keyframes ecv-seal-orbit {
+  to { transform: rotate(360deg); }
+}
+
+@keyframes ecv-dot-drift {
+  to { background-position: 5rem 2.5rem, 0 0; }
+}
+
+@media (max-width: 640px) {
+  .hero::before {
+    inset: -8% -45% 48% -25%;
+    filter: blur(1.8rem);
+    opacity: 0.68;
+  }
+
+  .manifesto::before {
+    opacity: 0.34;
+  }
+
+  .premium-card::before {
+    background: radial-gradient(22rem circle at 72% 18%, rgba(239, 184, 95, 0.2), transparent 68%);
+    opacity: 0.5;
+  }
+
+  .contact-button {
+    box-shadow: 0 0.8rem 2rem rgba(11, 40, 33, 0.09);
+  }
+
+  .impact::after {
+    background-size: 1.8rem 1.8rem, auto;
+    opacity: 0.24;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .hero::before,
+  .manifesto::before,
+  .future::before,
+  .section-index::before,
+  .case__label::before,
+  .nav-cta::before,
+  .header-cta-mobile::before,
+  .round-link::before,
+  .contact-button::before,
+  .route-banner p::before,
+  .hero__line--accent,
+  .experience__heading h2 em,
+  .how2eco__title h2 em,
+  .impact h2 em,
+  .innovation h2 em,
+  .contact h2 em,
+  .impact::after {
+    animation: none !important;
+  }
+
+  .hero__bus-cutout,
+  .hero__bee,
+  .hero__bird {
+    translate: 0 0 !important;
+  }
+}
+
+@media print {
+  .hero::before,
+  .manifesto::before,
+  .impact::after,
+  .future::before,
+  .contact::after,
+  .premium-card::before {
+    display: none !important;
+  }
+}

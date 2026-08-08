@@ -1,0 +1,17 @@
+/* Ajuste de leitura dos quatro cards de impacto em telas largas */
+.impact__cards h3 {
+  font-size: clamp(1.35rem, 1.65vw, 2rem);
+  overflow-wrap: anywhere;
+}
+
+@media (max-width: 900px) {
+  .impact__cards h3 {
+    font-size: clamp(1.55rem, 3.8vw, 2.3rem);
+  }
+}
+
+@media (max-width: 640px) {
+  .impact__cards h3 {
+    font-size: 1.85rem;
+  }
+}

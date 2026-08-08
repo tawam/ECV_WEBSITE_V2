@@ -1,0 +1,105 @@
+/* Auditoria final de responsividade e contenção */
+
+.impact__cards {
+  grid-template-columns: repeat(4, minmax(0, 1fr));
+}
+
+.impact__cards article,
+.answer-card h3 {
+  min-width: 0;
+}
+
+.answer-card h3 {
+  font-size: clamp(1.9rem, 3.5vw, 4rem);
+}
+
+@media (max-width: 900px) {
+  .impact__cards {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+}
+
+@media (max-width: 640px) {
+  .hero,
+  .hero__copy,
+  .hero__title,
+  .hero__intro,
+  .question__grid,
+  .question__sticky,
+  .question__story,
+  .manifesto__content,
+  .experience__heading,
+  .bees__copy,
+  .bees__character,
+  .how2eco__title,
+  .how2eco__body,
+  .audience,
+  .trajectory__heading,
+  .case__intro,
+  .impact,
+  .innovation__top,
+  .future__grid,
+  .contact,
+  .contact__copy,
+  .contact__actions {
+    min-width: 0;
+    max-width: 100%;
+  }
+
+  .hero__bus-stage {
+    width: min(82vw, 20rem);
+    margin-right: auto;
+    margin-left: auto;
+  }
+
+  .hero__copy {
+    width: 100%;
+  }
+
+  .hero__copy > .eyebrow {
+    width: min(100%, 20rem);
+    max-width: 100%;
+    font-size: 0.56rem;
+    letter-spacing: 0.08em;
+    line-height: 1.45;
+    white-space: normal;
+  }
+
+  .hero__title {
+    width: 100%;
+    font-size: clamp(2.05rem, 9.5vw, 2.65rem);
+    letter-spacing: -0.065em;
+  }
+
+  .hero__line {
+    display: block;
+    width: 100%;
+    max-width: 100%;
+  }
+
+  .hero__intro,
+  .hero__intro p {
+    width: min(100%, 20rem);
+  }
+
+  .question__grid > *,
+  .experience__heading > *,
+  .bees > *,
+  .how2eco > *,
+  .trajectory__heading > *,
+  .case__intro > *,
+  .innovation__top > *,
+  .future__grid > *,
+  .contact > * {
+    min-width: 0;
+  }
+
+  .answer-card h3 {
+    max-width: 11ch;
+    font-size: clamp(1.75rem, 7.8vw, 2.25rem);
+  }
+
+  .impact__cards {
+    grid-template-columns: minmax(0, 1fr);
+  }
+}

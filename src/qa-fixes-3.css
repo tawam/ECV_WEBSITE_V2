@@ -1,0 +1,266 @@
+/* Versão final — correções aprovadas de desktop e mobile */
+
+/* Regra editorial reutilizável: palavras e blocos semânticos ficam íntegros. */
+.editorial-title__line {
+  white-space: nowrap;
+}
+
+.editorial-title {
+  hyphens: none;
+  word-break: keep-all;
+}
+
+.header-cta-mobile {
+  display: none;
+}
+
+/* Card do ônibus: composição completa, sem cortes, no desktop. */
+@media (min-width: 901px) {
+  .answer-card .answer-card__bus {
+    top: 3rem;
+    right: 2.5%;
+    bottom: auto;
+    width: 56%;
+  }
+}
+
+/* A legenda passa para uma polaroide sem obstrução. */
+.case__photo--caption-safe {
+  z-index: 9;
+}
+
+.contact-button__arrow {
+  display: inline-grid;
+  width: 1.45rem;
+  height: 1.45rem;
+  flex: 0 0 1.45rem;
+  place-items: center;
+  color: var(--orange);
+}
+
+.contact-button__arrow svg,
+.contact__social-link svg {
+  display: block;
+  width: 100%;
+  height: 100%;
+  fill: currentColor;
+}
+
+.contact__social {
+  justify-content: center;
+  gap: clamp(1.25rem, 3vw, 2.5rem);
+}
+
+.contact__social-link {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.55rem;
+}
+
+.contact__social-link svg {
+  width: 1.15rem;
+  height: 1.15rem;
+  flex: 0 0 1.15rem;
+}
+
+@media (max-width: 640px) {
+  :root {
+    --header-height: 7.4rem;
+  }
+
+  /* Cabeçalho em duas linhas: logo/menu em cima e CTA dentro da barra. */
+  .site-header,
+  .site-header.is-scrolled {
+    height: var(--header-height);
+    align-items: flex-start;
+    padding-top: 0.9rem;
+    background: rgba(251, 245, 233, 0.97);
+    color: var(--forest-deep);
+    box-shadow: 0 1px 0 rgba(17, 45, 39, 0.12);
+    backdrop-filter: blur(16px);
+  }
+
+  .site-header.on-dark:not(.is-scrolled) {
+    color: var(--forest-deep);
+  }
+
+  .site-header.on-dark:not(.is-scrolled) .brand__color {
+    opacity: 1;
+  }
+
+  .site-header.on-dark:not(.is-scrolled) .brand__white {
+    opacity: 0;
+  }
+
+  .menu-toggle {
+    margin-top: -0.15rem;
+  }
+
+  .header-cta-mobile {
+    position: absolute;
+    z-index: 103;
+    bottom: 0.55rem;
+    left: 50%;
+    display: inline-flex;
+    width: min(13.5rem, 64vw);
+    min-height: 2.55rem;
+    align-items: center;
+    justify-content: center;
+    transform: translateX(-50%);
+    border: 1px solid var(--honey);
+    border-radius: 999px;
+    color: var(--orange);
+    font-size: 0.63rem;
+    font-weight: 700;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+  }
+
+  .site-nav .nav-cta {
+    display: none;
+  }
+
+  /* O menu fechado não pode deixar links escaparem da área transformada. */
+  .site-nav {
+    width: 100%;
+    height: 100dvh;
+    min-height: 100svh;
+    overflow: hidden;
+    visibility: hidden;
+    opacity: 0;
+    pointer-events: none;
+  }
+
+  .site-nav.is-open {
+    visibility: visible;
+    opacity: 1;
+    pointer-events: auto;
+  }
+
+  body.menu-open .header-cta-mobile {
+    visibility: hidden;
+    opacity: 0;
+    pointer-events: none;
+  }
+
+  body.menu-open .site-header {
+    background: var(--forest-deep);
+    color: var(--cream);
+  }
+
+  body.menu-open .brand__color {
+    opacity: 0;
+  }
+
+  body.menu-open .brand__white {
+    opacity: 1;
+  }
+
+  /* Ônibus inteiro e centralizado no card verde. */
+  .answer-card .answer-card__bus {
+    right: auto;
+    bottom: 1.35rem;
+    left: 50%;
+    width: 92%;
+    max-width: 34rem;
+    transform: translateX(-50%);
+  }
+
+  /* Selo alinhado ao eixo real da viewport. */
+  .case__label {
+    right: auto;
+    left: 50%;
+    transform: translate(-50%, -50%) rotate(-8deg);
+  }
+
+  html.js .case__label[data-reveal],
+  html.js .case__label[data-reveal].is-visible {
+    transform: translate(-50%, -50%) rotate(-8deg);
+  }
+
+  /* Três pares editoriais, sempre centralizados e sem palavra órfã. */
+  .innovation__words {
+    display: grid;
+    grid-template-columns: minmax(0, 1fr) auto minmax(0, 1fr);
+    gap: 1rem 0.45rem;
+    align-items: center;
+    justify-content: stretch;
+    padding-inline: var(--gutter);
+    font-size: clamp(1.18rem, 5.8vw, 1.55rem);
+    line-height: 0.95;
+    text-align: center;
+    overflow-wrap: normal;
+  }
+
+  .innovation__words span,
+  .innovation__words b {
+    min-width: 0;
+    text-align: center;
+  }
+
+  .innovation__words b:nth-of-type(2),
+  .innovation__words b:nth-of-type(4) {
+    display: none;
+  }
+
+  .contact__actions {
+    width: 100%;
+    margin-inline: auto;
+  }
+
+  .contact__social {
+    display: grid;
+    justify-items: center;
+    gap: 1rem;
+    margin-top: 1.5rem;
+    text-align: center;
+  }
+
+  .contact__social-link {
+    width: max-content;
+    max-width: 100%;
+  }
+
+  /* Quatro pausas editoriais controladas para o título de impacto. */
+  #impact-title.editorial-title {
+    width: 100%;
+    max-width: none;
+    font-size: clamp(1.9rem, 9.4vw, 2.45rem);
+    line-height: 0.9;
+    overflow-wrap: normal;
+  }
+
+  #impact-title .editorial-title__line {
+    display: block;
+    width: max-content;
+    max-width: 100%;
+  }
+
+  #impact-title .editorial-title__desktop-break {
+    display: none;
+  }
+
+  /* Rodapé como um único bloco visual centralizado. */
+  .site-footer {
+    justify-items: center;
+    gap: 1.35rem;
+    padding-block: 3.5rem;
+    text-align: center;
+  }
+
+  .site-footer img {
+    margin-inline: auto;
+  }
+
+  .site-footer a,
+  .site-footer p {
+    justify-self: center;
+  }
+}
+
+@media (max-width: 360px) {
+  .innovation__words {
+    font-size: 1.05rem;
+  }
+}

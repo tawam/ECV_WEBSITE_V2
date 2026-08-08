@@ -1,0 +1,89 @@
+/* ECV Experience — composição editorial avançada. */
+
+/* Tracing beam: a trajetória recebe uma linha de energia contínua. */
+.places {
+  position: relative;
+  isolation: isolate;
+}
+
+.places::before {
+  position: absolute;
+  z-index: 0;
+  top: 0;
+  bottom: 0;
+  left: 0;
+  width: 2px;
+  content: "";
+  background: linear-gradient(180deg, transparent, var(--honey), var(--sky), var(--orange), transparent);
+  background-size: 100% 240%;
+  box-shadow: 0 0 1.2rem rgba(91, 198, 216, 0.32);
+  animation: ecv-route-beam 9s linear infinite;
+}
+
+.place {
+  position: relative;
+  z-index: 1;
+}
+
+.place:hover {
+  background:
+    radial-gradient(circle at 88% 50%, rgba(91, 198, 216, 0.14), transparent 30%),
+    var(--forest);
+  box-shadow: 0 0.9rem 2.4rem rgba(17, 45, 39, 0.12);
+}
+
+/* Bento editorial para os quatro resultados — assimetria com hierarquia. */
+@media (min-width: 901px) {
+  .impact__cards {
+    grid-template-columns: repeat(12, minmax(0, 1fr));
+    gap: 1rem;
+    border: 0;
+    box-shadow: none;
+  }
+
+  .impact__cards article {
+    min-height: 19rem;
+    overflow: hidden;
+    border: 1px solid rgba(244, 229, 197, 0.22) !important;
+    border-radius: var(--radius);
+    background: rgba(255, 250, 240, 0.035);
+    box-shadow: 0 1.4rem 3.5rem rgba(0, 0, 0, 0.08);
+    backdrop-filter: blur(6px);
+  }
+
+  .impact__cards article:nth-child(1) { grid-column: 1 / span 7; }
+  .impact__cards article:nth-child(2) { grid-column: 8 / span 5; }
+  .impact__cards article:nth-child(3) { grid-column: 1 / span 4; }
+  .impact__cards article:nth-child(4) { grid-column: 5 / span 8; }
+
+  .impact__cards h3 {
+    max-width: 16ch;
+    margin-top: 5.5rem;
+  }
+
+  .impact__cards article:nth-child(4) {
+    display: grid;
+    grid-template-columns: auto minmax(0, 1fr);
+    column-gap: 1.5rem;
+    align-content: end;
+  }
+
+  .impact__cards article:nth-child(4) > span {
+    grid-row: 1 / span 2;
+    align-self: start;
+  }
+
+  .impact__cards article:nth-child(4) h3 {
+    margin-top: 0;
+  }
+}
+
+@keyframes ecv-route-beam {
+  to { background-position: 0 240%; }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .places::before {
+    animation: none;
+  }
+}
